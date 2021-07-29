@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 
 import { addPost, updateNewPostText } from '../../redux/actions';
 import { getProfileThunkCreator } from '../../redux/thunks';
@@ -29,9 +30,9 @@ const mapStateToProps = (state) => {
       profile: state.profilePage.profile,
    }
 }
-const AuthRedirectComponent = withAuthRedirect(ProfileContainer);
-const WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
 
-
-
-export default connect(mapStateToProps, { addPost, updateNewPostText, getProfileThunkCreator })(WithUrlDataContainerComponent);
+export default compose(
+   connect(mapStateToProps, { addPost, updateNewPostText, getProfileThunkCreator }),
+   withRouter,
+   withAuthRedirect,
+)(ProfileContainer);

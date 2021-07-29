@@ -25,6 +25,7 @@ const UsersItem = (props) => {
 			</button>
 		</li>
 	);
-}
+};
+
 
 export default UsersItem;
