@@ -1,4 +1,4 @@
-import { ADD_POST, UPDATE_NEW_POST_TEXT, SET_USER_PROFILE } from './actions';
+import { ADD_POST, UPDATE_NEW_POST_TEXT, SET_USER_PROFILE, SET_STATUS } from './actions';
 
 const initialState = {
 	posts: [
@@ -7,14 +7,13 @@ const initialState = {
 	{ likesCount: 34, message: 'Хорошая веб-страница! Мне очень нравится', id: 3 },
 	{ likesCount: 120, message: 'Изучению программирование каждый день.', id: 4 },
 	],
-	newPostText: '',
 	profile: null
 }
 
 export const profileReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_POST:
-			let newPost = { likesCount: 0, message: state.newPostText, id: 5 };
+			let newPost = { likesCount: 0, message: action.text, id: 5 };
 			
 			return {
 				...state,
@@ -30,6 +29,14 @@ export const profileReducer = (state = initialState, action) => {
 			return {
 				...state,
 				profile: action.profile
+			}
+		case SET_STATUS:
+			return {
+				...state,
+				profile: {
+					...state.profile,
+					status: action.status
+				}
 			}
 		default:
 			return state;

@@ -12,19 +12,17 @@ const initialState = {
 	{ id: 1, text: 'Привет React' },
 	{ id: 2, text: 'Изучаю Реакт и Редакс!' },
 	{ id: 3, text: 'Мне нравится изучать JS!!!' },
-	],
-	newMessageText: '',
+	]
 }
 
 export const dialogsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SEND_MESSAGE:
-			let newMessage = { id: 4, text: state.newMessageText };
+			let newMessage = { id: 4, text: action.message };
 			
 			return {
 				...state,
 				messages: [...state.messages, newMessage],
-				newMessageText: ''
 			}
 		case UPDATE_NEW_MESSAGE_TEXT:
 			return {

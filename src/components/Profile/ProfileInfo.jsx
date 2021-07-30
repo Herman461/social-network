@@ -1,5 +1,6 @@
 import React from 'react';
 import ava from '../../assets/img/ava.jpg';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
    return (
@@ -10,8 +11,8 @@ const ProfileInfo = (props) => {
             </div>
          </div>
          <div className="info-profile__column">
-            <div className="info-profile__name">{props.profile ? props.profile.name : "My Profile"} ({props.profile ? props.profile._id : "Any id"})</div>
-            <div className="info-profile__status">{props.profile ? props.profile.status : "status"}</div>
+            <div className="info-profile__name">{props.profile.name} ({props.profile._id})</div>
+            <ProfileStatus setStatusThunkCreator={props.setStatusThunkCreator} profile={props.profile} />
          </div>
       </div>
    );

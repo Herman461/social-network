@@ -5,14 +5,13 @@ import * as axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
-import { addPost, updateNewPostText } from '../../redux/actions';
-import { getProfileThunkCreator } from '../../redux/thunks';
+import { addPost } from '../../redux/actions';
+import { getProfileThunkCreator, setStatusThunkCreator } from '../../redux/thunks';
 import { withAuthRedirect } from '../hoc';
 import Profile from './Profile';
 
 
 class ProfileContainer extends React.Component {
-
    componentDidMount() {
 
       const userId = this.props.match.params.userId || 1;
@@ -32,7 +31,7 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-   connect(mapStateToProps, { addPost, updateNewPostText, getProfileThunkCreator }),
+   connect(mapStateToProps, { addPost, getProfileThunkCreator, setStatusThunkCreator }),
    withRouter,
-   withAuthRedirect,
+   // withAuthRedirect,
 )(ProfileContainer);

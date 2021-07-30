@@ -9,7 +9,7 @@ import Gallery from './pages/Gallery';
 import DialogsContainer from './Dialogs/DialogsContainer';
 import ProfileContainer from './Profile/ProfileContainer';
 import UsersContainer from './Users/UsersContainer';
-import Login from './pages/Login';
+import Login from './Login/Login';
 
 const App = (props) => {
    return (

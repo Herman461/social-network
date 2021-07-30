@@ -1,7 +1,10 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+
 import DialogItem from './DialogItem';
 import Message from './Message';
-import { Redirect } from 'react-router-dom';
+import AddMessageForm from './AddMessageForm';
+
 
 const Dialogs = (props) => {
 
@@ -13,14 +16,6 @@ const Dialogs = (props) => {
       <Message text={message.text} key={message.id} id={message.id} />
    ));
 
-   const sendNewMessage = (e) => {
-      e.preventDefault();
-      props.sendMessage();
-   };
-   const onMessageChange = (e) => {
-      let messageText = e.target.value;
-      props.updateNewMessageText(messageText);
-   };
 
    return (
       <div className="dialogs">
@@ -28,16 +23,7 @@ const Dialogs = (props) => {
             <ul className="dialogs__names">{dialogsElements}</ul>
             <ul className="dialogs__messages">{messagesElements}</ul>
          </div>
-         <form className="dialogs__form form-dialogs">
-            <textarea
-               value={props.newMessageText}
-               onChange={onMessageChange}
-               className="form-dialogs__textarea"
-            />
-            <button onClick={sendNewMessage} className="form-dialogs__button">
-               Отправить
-            </button>
-         </form>
+         <AddMessageForm sendMessage={props.sendMessage} />
       </div>
    );
 };

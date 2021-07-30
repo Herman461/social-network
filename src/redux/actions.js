@@ -12,23 +12,16 @@ export const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 export const SET_USER_PROFILE = 'SET_USER_PROFILE';
 export const SET_USER_DATA = 'SET_USER_DATA';
 export const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
+export const SET_STATUS = 'SET_STATUS';
 
-export const addPost = () => ({
+export const addPost = (text) => ({
 	type: ADD_POST,
+	text
 });
 
-export const updateNewPostText = (postText) => ({
-	type: UPDATE_NEW_POST_TEXT,
-	postText
-});
-
-export const sendMessage = () => ({
-	type: SEND_MESSAGE
-});
-
-export const updateNewMessageText = (messageText) => ({
-	type: UPDATE_NEW_MESSAGE_TEXT,
-	messageText
+export const sendMessage = (message) => ({
+	type: SEND_MESSAGE,
+	message
 });
 
 export const toggleFollow = (userId) => ({
@@ -81,6 +74,10 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
 	userId
 })
 
+export const setStatus = (status) => ({
+	type: SET_STATUS,
+	status
+})
 
 
 

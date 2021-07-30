@@ -2,7 +2,7 @@ import * as axios from 'axios';
 import { 
 	toggleIsFetching, setUsers, setTotalUsersCount,
 	toggleFollowingProgress, toggleFollow, 
-	setAuthUserData, setUserProfile } from './actions';
+	setAuthUserData, setUserProfile, setStatus } from './actions';
 import { usersAPI, authAPI } from '../api/api';
 
 export const getUsersThunkCreator = () => (dispatch) => {
@@ -30,6 +30,12 @@ export const getProfileThunkCreator = (userId) => (dispatch) => {
 		dispatch(setUserProfile(data.profile));
 	});
 };
+
+export const setStatusThunkCreator = (userId, status) => (dispatch) => {
+	usersAPI.getStatus(userId, status).then(data => {
+		dispatch(setStatus(data.status))
+	});
+}
 
 export const authThunkCreator = () => (dispatch) => {
 	authAPI.getAuth().then(data => {
