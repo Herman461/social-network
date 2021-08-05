@@ -14,6 +14,7 @@ export const SET_USER_DATA = 'SET_USER_DATA';
 export const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 export const SET_STATUS = 'SET_STATUS';
 export const SET_MESSAGE = 'SET_MESSAGE';
+export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
 export const addPost = (text) => ({
 	type: ADD_POST,
@@ -85,6 +86,12 @@ export const setMessage = (message) => ({
 	type: SET_MESSAGE,
 	message
 })
+
+export const initializedSuccess = () => ({
+	type: INITIALIZED_SUCCESS
+})
+
+
 
 
 

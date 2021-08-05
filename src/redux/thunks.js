@@ -2,7 +2,7 @@ import * as axios from 'axios';
 import { 
 	toggleIsFetching, setUsers, setTotalUsersCount,
 	toggleFollowingProgress, toggleFollow, 
-	setAuthUserData, setUserProfile, setStatus, setMessage} from './actions';
+	setAuthUserData, setUserProfile, setStatus, setMessage, initializedSuccess} from './actions';
 import { usersAPI, authAPI } from '../api/api';
 
 export const getUsersThunkCreator = () => (dispatch) => {
@@ -39,7 +39,7 @@ export const setStatusThunkCreator = (userId, status) => (dispatch) => {
 
 
 export const authThunkCreator = () => (dispatch) => {
-	authAPI.getAuth().then(data => {
+	return authAPI.getAuth().then(data => {
 		if (data.resultCode === 0) {
 			dispatch(setAuthUserData(data.user, true));
 		}
@@ -71,5 +71,9 @@ export const logoutThunkCreator = (username, password) => (dispatch) => {
 			dispatch(setAuthUserData(null, false));
 		}
 	});
+}
+
+export const initializeApp = () => (dispatch) => {
+	dispatch(authThunkCreator()).then(() => dispatch(initializedSuccess()))
 }
 
