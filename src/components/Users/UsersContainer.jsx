@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-
+import * as axios from 'axios';
 import Users from './Users';
 
 import { getUsersThunkCreator, toggleFollowThunkCreator } from '../../redux/thunks';
@@ -15,11 +15,14 @@ import {
 class UsersComponent extends React.Component {
 	componentDidMount() {	
 		this.props.getUsersThunkCreator();
+		// axios.post('http://localhost:4000/api/register', { username: "Hdadlasdsdsdasasan", password: "123" }).then(response => {
+		// 	debugger;
+		// })
 	}
 
 	render() {
 		return <Users {...this.props} />;
-	 } 
+	} 
 
 };
 

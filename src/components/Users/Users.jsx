@@ -8,7 +8,7 @@ import Preloader from '../common/Preloader';
 const Users = (props) => {
 	let usersElements = props.filteredUsers.map(user => (
 		<UsersItem
-			key={user._id}
+			key={user.id}
 			user={user}
 			toggleFollowThunkCreator={props.toggleFollowThunkCreator}
 			followingInProgress={props.followingInProgress}

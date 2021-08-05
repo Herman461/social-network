@@ -13,6 +13,7 @@ export const SET_USER_PROFILE = 'SET_USER_PROFILE';
 export const SET_USER_DATA = 'SET_USER_DATA';
 export const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 export const SET_STATUS = 'SET_STATUS';
+export const SET_MESSAGE = 'SET_MESSAGE';
 
 export const addPost = (text) => ({
 	type: ADD_POST,
@@ -63,9 +64,10 @@ export const setUserProfile = (profile) => ({
 	profile
 });
 
-export const setAuthUserData = (user) => ({
+export const setAuthUserData = (user, isAuth) => ({
 	type: SET_USER_DATA,
-	user
+	user,
+	isAuth
 });
 
 export const toggleFollowingProgress = (isFetching, userId) => ({
@@ -79,6 +81,10 @@ export const setStatus = (status) => ({
 	status
 })
 
+export const setMessage = (message) => ({
+	type: SET_MESSAGE,
+	message
+})
 
 
 

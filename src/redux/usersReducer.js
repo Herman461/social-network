@@ -26,7 +26,7 @@ export const usersReducer = (state = initialState, action) => {
 			return {
 				...state,
 				filteredUsers: state.filteredUsers.map(user => 
-					user._id === action.userId ? 
+					user.id === action.userId ? 
 					{...user, followed: !user.followed} : user
 				)
 			}
@@ -39,7 +39,7 @@ export const usersReducer = (state = initialState, action) => {
 		case FILTER_USERS:
 			return {
 				...state,
-				filteredUsers: state.users.filter(user => user.name.includes(state.text))
+				filteredUsers: state.users.filter(user => user.username.includes(state.text))
 			}
 		case UPDATE_USERS_SEARCH:
 			return {

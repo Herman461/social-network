@@ -1,11 +1,12 @@
-import { SET_USER_DATA } from './actions';
+import { SET_USER_DATA, SET_MESSAGE } from './actions';
 
 const initialState = {
 	user: {
-		_id: null,
-		name: null,
+		id: null,
+		username: null
 	},
 	isAuth: false,
+	message: ""
 }
 export const authReducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -13,7 +14,12 @@ export const authReducer = (state = initialState, action) => {
 			return {
 				...state,
 				user: { ...action.user },
-				isAuth: true
+				isAuth: action.isAuth
+			}
+		case SET_MESSAGE:
+			return {
+				...state,
+				message: action.message
 			}
 		default:
 			return state;

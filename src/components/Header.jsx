@@ -51,8 +51,8 @@ const Header = (props) => {
             <div className="header__data data-header">
                   {props.isAuth ? 
                      <>
-                        <div className="data-header__id">id: {props.user._id}</div>
-                        <div className="data-header__email">name: {props.user.name}</div>
+                        <div className="data-header__id">id: {props.user.id}</div>
+                        <div className="data-header__email">name: {props.user.username}</div>
                      </>
                      : <NavLink to="/login">Войти</NavLink>
                   }
@@ -67,6 +67,7 @@ const Header = (props) => {
                   </div>
                </div>
             </a>
+            {props.isAuth ? <NavLink to="/login" onClick={props.logoutThunkCreator} className="logout">Log out</NavLink> : null}
          </div>
       </header>
    );

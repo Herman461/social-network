@@ -2,7 +2,7 @@ import * as axios from 'axios';
 import { 
 	toggleIsFetching, setUsers, setTotalUsersCount,
 	toggleFollowingProgress, toggleFollow, 
-	setAuthUserData, setUserProfile, setStatus } from './actions';
+	setAuthUserData, setUserProfile, setStatus, setMessage} from './actions';
 import { usersAPI, authAPI } from '../api/api';
 
 export const getUsersThunkCreator = () => (dispatch) => {
@@ -37,10 +37,39 @@ export const setStatusThunkCreator = (userId, status) => (dispatch) => {
 	});
 }
 
+
 export const authThunkCreator = () => (dispatch) => {
 	authAPI.getAuth().then(data => {
 		if (data.resultCode === 0) {
-			dispatch(setAuthUserData(data.user));
-		}	
+			dispatch(setAuthUserData(data.user, true));
+		}
 	});
 }
+
+export const loginThunkCreator = (username, password) => (dispatch) => {
+
+	authAPI.login(username, password).then(data => {
+		if (data.resultCode === 0) {
+			dispatch(setAuthUserData(data.user, true));
+		} else {
+			dispatch(setMessage(data.message))
+		}
+	});
+}
+
+export const registerThunkCreator = (username, password) => (dispatch) => {
+	authAPI.register(username, password).then(data => {
+		if (data.resultCode === 0) {
+			dispatch(setAuthUserData(data.user, true));
+		}
+	});
+}
+
+export const logoutThunkCreator = (username, password) => (dispatch) => {
+	authAPI.logout(username, password).then(data => {
+		if (data.resultCode === 0) {
+			dispatch(setAuthUserData(null, false));
+		}
+	});
+}
+

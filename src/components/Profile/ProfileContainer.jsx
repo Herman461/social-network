@@ -14,8 +14,8 @@ import Profile from './Profile';
 class ProfileContainer extends React.Component {
    componentDidMount() {
 
-      const userId = this.props.match.params.userId || 1;
-      this.props.getProfileThunkCreator(userId)
+      // const userId = this.props.match.params.userId || 1;
+      // this.props.getProfileThunkCreator(userId)
    }
    render() {
       return <Profile {...this.props} />
@@ -33,5 +33,5 @@ const mapStateToProps = (state) => {
 export default compose(
    connect(mapStateToProps, { addPost, getProfileThunkCreator, setStatusThunkCreator }),
    withRouter,
-   // withAuthRedirect,
+   withAuthRedirect,
 )(ProfileContainer);

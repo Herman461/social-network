@@ -1,19 +1,11 @@
 import React from 'react';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
-import * as yup from 'yup';
+import { PostSchema } from '../../models/Models';
 
 import smile from '../../assets/img/icons/smile.svg';
 import camera from '../../assets/img/icons/camera.png';
 import music from '../../assets/img/icons/music.png';
 import micro from '../../assets/img/icons/micro.png';
-
-
-const PostSchema = yup.object().shape({
-	newPostText: yup.string()
-		.min(3, 'Слишком мало символов!')
-		.max(12, 'Слишком много символов!')
-		.required('Это поле обязательно!')
-});
 
 const AddPostForm = (props) => {
 	return (

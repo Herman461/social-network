@@ -2,6 +2,7 @@ import * as axios from 'axios';
 
 const instance = axios.create({
 	baseURL: "http://localhost:4000/",
+	withCredentials: true
 });
 
 
@@ -26,5 +27,14 @@ export const usersAPI = {
 export const authAPI = {
 	getAuth() {
 		return instance.get('api/auth/me').then(response => response.data);
+	},
+	login(username, password) {
+		return instance.post('api/auth/login', { username, password }).then(response => response.data);
+	},
+	logout() {
+		return instance.delete('api/auth/login').then(response => response.data);
+	},
+	register(username, password) {
+		return instance.post('api/register', { username, password }).then(response => response.data);
 	}
 }

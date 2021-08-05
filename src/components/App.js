@@ -9,7 +9,7 @@ import Gallery from './pages/Gallery';
 import DialogsContainer from './Dialogs/DialogsContainer';
 import ProfileContainer from './Profile/ProfileContainer';
 import UsersContainer from './Users/UsersContainer';
-import Login from './Login/Login';
+import LoginContainer from './Login/LoginContainer';
 
 const App = (props) => {
    return (
@@ -40,7 +40,7 @@ const App = (props) => {
                   <Route component={Friends} path="/friends" />
                   <Route component={Music} path="/music" />
                   <Route component={Gallery} path="/gallery" />
-                  <Route render={() => <Login />} path="/login" />
+                  <Route render={() => <LoginContainer />} path="/login" />
                </div>
             </div>
          </main>
