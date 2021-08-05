@@ -26,7 +26,7 @@ export const toggleFollowThunkCreator = (userId, followed) => (dispatch) => {
 };
 
 export const getProfileThunkCreator = (userId) => (dispatch) => {
-	usersAPI.getUserProfile(userId).then(data => {
+	usersAPI.getUserProfile().then(data => {
 		dispatch(setUserProfile(data.profile));
 	});
 };

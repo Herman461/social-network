@@ -1,15 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import * as axios from 'axios';
-import Users from './Users';
 
+import Users from './Users';
+import { getSearchText, getTotalUsersCount, getFilteredUsers, 
+	getIsFetching, getFollowingInProgress} from '../../redux/selectors/usersSelectors';
 import { getUsersThunkCreator, toggleFollowThunkCreator } from '../../redux/thunks';
 import {
 	filterUsers, 
 	updateUsersSearch,
 	setSelectedPage
 } from '../../redux/actions';
+
 
 
 class UsersComponent extends React.Component {
@@ -28,11 +30,11 @@ class UsersComponent extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-	searchText: state.usersPage.text,
-	totalUsersCount: state.usersPage.totalUsersCount,
-	filteredUsers: state.usersPage.filteredUsers,
-	isFetching: state.usersPage.isFetching,
-	followingInProgress: state.usersPage.followingInProgress
+	searchText: getSearchText(state),
+	totalUsersCount: getTotalUsersCount(state),
+	filteredUsers: getFilteredUsers(state),
+	isFetching: getIsFetching(state),
+	followingInProgress: getFollowingInProgress(state)
 });
 
 const UsersContainer = connect(mapStateToProps,

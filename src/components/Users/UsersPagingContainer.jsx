@@ -3,6 +3,8 @@ import * as axios from "axios";
 import UsersPaging from './UsersPaging';
 import { connect } from 'react-redux';
 import { setSelectedPage, setUsers, toggleIsFetching } from '../../redux/actions';
+import { getSelectedPage, getTotalUsersCount,
+	getPageSize, getPageNeighbours } from '../../redux/selectors/usersSelectors';
 
 class UsersPagingContainer extends React.Component {
 	onPageClick = (e, page) => {
@@ -29,10 +31,10 @@ class UsersPagingContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	selectedPage: state.usersPage.selectedPage,
-	totalUsersCount: state.usersPage.totalUsersCount,
-	pageSize: state.usersPage.pageSize,
-	pageNeighbours: state.usersPage.pageNeighbours
+	selectedPage: getSelectedPage(state),
+	totalUsersCount: getTotalUsersCount(state),
+	pageSize: getPageSize(state),
+	pageNeighbours: getPageNeighbours(state)
 })
 
 export default connect(mapStateToProps, 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { initializeApp } from '../redux/thunks';
+import { getInitialized } from '../redux/selectors/appSelectors';
 
 import HeaderContainer from './HeaderContainer';
 import { Route } from 'react-router-dom';
@@ -62,7 +63,7 @@ class App extends React.Component {
 };
 
 const mapStateToProps = (state) => ({
-   initialized: state.app.initialized
+   initialized: getInitialized(state)
 })
 
 export default connect(mapStateToProps, { initializeApp })(App);

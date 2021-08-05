@@ -7,7 +7,7 @@ const Login = (props) => {
 	//! здесь пришел id == undefined на втором вызове, когда мы непосредственно получили ответ на
 	//  успешную регистрацию, хотя isAuth == true
 	if (props.isAuth) {
-		return <Redirect to={'/profile/' + props.id} />
+		return <Redirect to='/profile' />
 	}
 
 	return (

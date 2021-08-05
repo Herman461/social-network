@@ -11,7 +11,7 @@ const ProfileInfo = (props) => {
             </div>
          </div>
          <div className="info-profile__column">
-            <div className="info-profile__name">{props.profile.name} ({props.profile._id})</div>
+            <div className="info-profile__name">{props.profile.username} ({props.profile.id})</div>
             <ProfileStatus setStatusThunkCreator={props.setStatusThunkCreator} profile={props.profile} />
          </div>
       </div>

@@ -8,6 +8,7 @@ import { compose } from 'redux';
 import { addPost } from '../../redux/actions';
 import { getProfileThunkCreator, setStatusThunkCreator } from '../../redux/thunks';
 import { withAuthRedirect } from '../hoc';
+import { getPosts, getPostText, getProfile} from '../../redux/selectors/profileSelectors.js';
 import Profile from './Profile';
 
 
@@ -15,7 +16,7 @@ class ProfileContainer extends React.Component {
    componentDidMount() {
 
       // const userId = this.props.match.params.userId || 1;
-      // this.props.getProfileThunkCreator(userId)
+      this.props.getProfileThunkCreator()
    }
    render() {
       return <Profile {...this.props} />
@@ -24,9 +25,9 @@ class ProfileContainer extends React.Component {
  
 const mapStateToProps = (state) => {
    return {
-      posts: state.profilePage.posts,
-      newPostText: state.profilePage.newPostText,
-      profile: state.profilePage.profile,
+      posts: getPosts(state),
+      newPostText: getPostText(state),
+      profile: getProfile(state),
    }
 }
 
