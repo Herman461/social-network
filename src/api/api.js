@@ -19,8 +19,8 @@ export const usersAPI = {
 	getPages(pageSize, page) {
 		return instance.get(`users?page=${page}&count=${pageSize}`).then(response => response.data);
 	},
-	getStatus(userId, status) {
-		return instance.put('api/profile/status/' + userId, { status }).then(response => response.data);
+	getStatus(status) {
+		return instance.put('api/profile/status', { status }).then(response => response.data);
 	}
 };
 

@@ -31,8 +31,8 @@ export const getProfileThunkCreator = (userId) => (dispatch) => {
 	});
 };
 
-export const setStatusThunkCreator = (userId, status) => (dispatch) => {
-	usersAPI.getStatus(userId, status).then(data => {
+export const setStatusThunkCreator = (status) => (dispatch) => {
+	usersAPI.getStatus(status).then(data => {
 		dispatch(setStatus(data.status))
 	});
 }

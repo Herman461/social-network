@@ -1,59 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import * as axios from 'axios';
 
-class ProfileStatus extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			editMode: false,
-			statusText: this.props.profile.status
-		};
-		this.activeEditMode = this.activeEditMode.bind(this);
-		this.deactivateEditMode = this.deactivateEditMode.bind(this);
-		this.onStatusChange = this.onStatusChange.bind(this);
-		this.saveNewStatus = this.saveNewStatus.bind(this);
-	}
+const ProfileStatus = (props) => {
+	const [editMode, setEditMode] = useState(false);
+	const [newStatus, setNewStatus] = useState(props.profile.status);
+	
+	useEffect(() => {
+		setNewStatus(props.profile.status);
+	}, [editMode]);
 
-	onStatusChange(e) {
-		this.setState({ statusText: e.target.value });	
-	}
-	activeEditMode() {
-		this.setState({ editMode: true, statusText: this.props.profile.status  });
-	}
-	deactivateEditMode() {
-		this.setState({ editMode: false })
-	}
-	saveNewStatus() { 
-		this.props.setStatusThunkCreator(this.props.profile._id, this.state.statusText);
-		this.deactivateEditMode();
-	}
-	componentDidUpdate(prevProps) {
-		if (prevProps.profile.status !== this.props.profile.status) {
-			this.setState({ statusText: this.props.profile.status });
-		}
-	}
-	render() {
-		return (
-			<form action="#" className="info-profile__status status-profile">
-				<div className="status-profile__text" onClick={this.activeEditMode}>
-					{this.props.profile.status}
-				</div>
-				{this.state.editMode &&
-					<div className="status-profile__body" onMouseLeave={this.deactivateEditMode}>
+	const onStatusChange = (e) => {
+		setNewStatus(e.target.value);	
+	};
+	const activeEditMode = () => {
+		setEditMode(true);
+	};
+	const deactivateEditMode = () => {
+		setEditMode(false);
+	};
+	const saveNewStatus = () => { 
+		props.setStatusThunkCreator(newStatus);
+		deactivateEditMode();
+	};
+
+	return (
+		<form action="#" className="info-profile__status status-profile">
+			<div className="status-profile__text" onClick={activeEditMode}>
+				{props.profile.status}
+			</div>
+			{editMode &&
+				<div className="status-profile__body" onMouseLeave={deactivateEditMode}>
 					<div className="status-profile__input">
 						<input autoFocus={true} className="input" 
-							value={this.state.statusText}
-							onChange={this.onStatusChange}
+							value={newStatus}
+							onChange={onStatusChange}
 						/>
 					</div>
-					<button type="submit" onClick={this.saveNewStatus} className="status-profile__btn">Сохранить</button>
+					<button type="submit" onClick={saveNewStatus} className="status-profile__btn">Сохранить</button>
 				</div>
-				}
-
-			</form>
+			}
+		</form>
 			
-		);
-	}
+	);
 }
 
 export default ProfileStatus;
